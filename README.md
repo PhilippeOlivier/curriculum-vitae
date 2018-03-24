@@ -1,4 +1,4 @@
-# simple-resume-cv
+# curriculum-vitae
 
 ## Overview
 
