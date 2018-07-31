@@ -4,8 +4,7 @@
 
 This template was originally created by Zach Scrivena (zachscrivena@gmail.com).
 
-Compiling instructions:
-`xelatex OLIVIER_Philippe_CV_fr.tex`
+Compilation instructions: `xelatex OLIVIER_Philippe_CV_fr.tex`
 
 ## License
 
