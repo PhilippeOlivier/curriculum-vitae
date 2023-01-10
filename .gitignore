@@ -1,6 +1,4 @@
 archive
-.gitignore
-
 *.aux
 *.log
 *.out
