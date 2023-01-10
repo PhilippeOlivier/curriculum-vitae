@@ -1,6 +1,5 @@
-examples
 archive
-resources
+.gitignore
 
 *.aux
 *.log
