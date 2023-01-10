@@ -1,344 +1,189 @@
-\documentclass[letterpaper,MMMyyyy,nonstopmode]{simpleresumecv}
+% Many parts taken from https://github.com/zachscrivena/simple-resume-cv
 
-% Source of this custom command: tex.stackexchange.com/a/294990
-\usepackage{tikz}
-\newcommand{\ExternalLink}{
-  \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{
-    \begin{scope}[x=1ex, y=1ex]
-      \clip (-0.1,-0.1) 
-      --++ (-0, 1.2) 
-      --++ (0.6, 0) 
-      --++ (0, -0.6) 
-      --++ (0.6, 0) 
-      --++ (0, -1);
-      \path[draw, 
-        line width = 0.5, 
-        rounded corners=0.5] 
-      (0,0) rectangle (1,1);
-    \end{scope}
-    \path[draw, line width = 0.5] (0.5, 0.5) 
-    -- (1, 1);
-    \path[draw, line width = 0.5] (0.6, 1) 
-    -- (1, 1) -- (1, 0.6);
-  }
-}
-
-\newcommand{\CVAuthor}{Philippe Olivier}
-\newcommand{\CVWebpage}{github.com/PhilippeOlivier}
-
-\hypersetup{
-pdftitle={\CVTitle},
-pdfauthor={\CVAuthor},
-pdfsubject={\CVWebpage},
-pdfcreator={XeLaTeX},
-pdfproducer={},
-pdfkeywords={},
-unicode=true,
-bookmarks=false,
-bookmarksopen=false,
-pdfstartview=FitH,
-pdfpagelayout=OneColumn,
-pdfpagemode=UseOutlines,
-hidelinks,
-breaklinks}
-
-\newcommand{\Code}[1]{\mbox{\textbf{#1}}}
-\newcommand{\CodeCommand}[1]{\mbox{\textbf{\textbackslash{#1}}}}
-\pagenumbering{gobble}
+\documentclass{memoir}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
 
 \begin{document}
+\pagenumbering{gobble}
+\reversemarginpar
 
-%%%%%%%%%
-% TITRE %
-%%%%%%%%%
+\newcommand{\UseHeadingFont}{\normalfont}
+\newcommand{\UseSectionFont}{\UseHeadingFont\fontsize{9pt}{11pt}\selectfont\bfseries}
+\newcommand{\UseSubSectionFont}{\UseHeadingFont\fontsize{8pt}{10pt}\selectfont\bfseries}
 
-\Title{\CVAuthor}
+\newcommand{\Section}[1]{\bigskip\item[\smash{\parbox[t]{1.2in}{\UseSectionFont\raggedright\MakeUppercase{#1}}}]}
+\newcommand{\SubSection}[1]{\par\bigskip{\UseSubSectionFont\raggedright\MakeUppercase{#1}}\par}
 
-\begin{SubTitle}
-\href{mailto:philippe.olivier@polymtl.ca}
-{Philippe.Olivier@polymtl.ca}
-\,\SubBulletSymbol\,
-514.433.5700
-\,\SubBulletSymbol\,
-\href{https://www.github.com/PhilippeOlivier}
-{\url{\CVWebpage}\ExternalLink}
-\end{SubTitle}
+\newcommand{\Item}{
+  \normalsize
+  \smallskip
+  \par
+  \vspace{0\baselineskip}
+  \parshape 1
+  \labelwidth
+  \linewidth
+  \ignorespaces}
 
-\begin{Body}
+\newcommand{\BulletSymbol}{{\normalfont\fontsize{6.5}{7.8}\selectfont\raisebox{0.17em}{\textbullet}}}
+\newsavebox{\BulletItemIndentBox}
+\newlength{\BulletItemIndentWidth}
+\newcommand{\BulletItem}{\par\vspace{0\baselineskip}
+  \savebox{\BulletItemIndentBox}{\hspace{1.5mm}\BulletSymbol\hspace{1.5mm}}
+  \settowidth{\BulletItemIndentWidth}{\usebox{\BulletItemIndentBox}}
+  \parshape 2
+  \labelwidth \linewidth
+  \dimexpr\labelwidth+\BulletItemIndentWidth\relax\dimexpr\linewidth-\BulletItemIndentWidth\relax
+  \usebox{\BulletItemIndentBox}
+  \ignorespaces}
 
-%%%%%%%%%%%%%%%
-%% ÉDUCATION %%
-%%%%%%%%%%%%%%%
- 
-  \Section
-  {Éducation}{}{}
+\noindent{\LARGE \textsc{Philippe Olivier}}
+\hfill
+\begin{minipage}{.4\textwidth}
+\footnotesize{
+  \flushright
+  \texttt{\href{mailto:philippe@pedtsr.ca}{philippe@pedtsr.ca}} \\
+  \texttt{\href{https://www.github.com/PhilippeOlivier}{github.com/PhilippeOlivier}} \\
+  \texttt{1-514-433-5700} \\}
+\end{minipage}
 
-  \Entry
-  \textbf{Polytechnique Montréal}
+\vspace{0.5in}
 
+\par
+\vspace{1.5\baselineskip}
+\begin{list}{}{
+    \setlength\leftmargin{1.2in}
+    \setlength\rightmargin{0in}
+    \setlength\labelwidth{1.2in}
+    \setlength\labelsep{0in}
+    \setlength\listparindent{0in}
+    \setlength\itemindent{0in}
+    \setlength\parskip{0in}
+    \setlength\topsep{0in}
+    \setlength\parsep{0in}
+    \setlength\itemsep{0.90\baselineskip}
+    \setlength\partopsep{0in}}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \Section{Travail}
+
+  \SubSection{Travail contractuel}
+
+  \Item \textbf{pganalyze} \hfill 08/2022--Présent
+  \BulletItem Construction d'un modèle d'optimisation pour la sélection automatique d'index pour les bases de données
+  \BulletItem Ce modèle à objectifs multiples peut être personnalisé par l'utilisateur
+  \BulletItem Préparation d'une publication scientifique pour ce modèle (en cours)
+
+  %%%%%%%%%%%%%%%%%%%%%
+
+  \SubSection{Emplois}
+
+  \Item \textbf{Hydro-Québec TransÉnergie} \hfill 09/2014--04/2015
+  \BulletItem Automatisation du transfert de données de/vers un logiciel spécialisé
+  \BulletItem Automatisation des tests faits par des ingénieurs électriques
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \Section{Éducation}
+
+  \Item \textbf{Polytechnique Montréal} \hfill 08/2016--05/2021 \\
   Doctorat en génie informatique
-  \hfill
-  Août 2016 -- Mai 2021
 
-  \Gap
-  \BulletItem
-  Titre de la thèse : Fairness in Combinatorial Optimization
-  
-  \Gap
-  \BulletItem
-  Superviseurs de recherche : Gilles Pesant et Andrea Lodi
-
-  \BigGap
-  \Entry
-  \textbf{Université Laval}
-
+  \Item \textbf{Université Laval} \hfill 08/2012--05/2016 \\
   Baccalauréat en informatique
-  \hfill
-  Août 2012 -- Mai 2016
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% EXPÉRENCE DE RECHERCHE %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \Section{Recherche}
 
-\Section
-{Expérience de recherche}{}{}
+  \SubSection{Intérêts}
+  
+  \BulletItem Recherche opérationnelle
+  \BulletItem Programmation par contraintes
+  \BulletItem Programmation en nombres entiers
 
-\Entry
-\textbf{Intérêts de recherche}
+  %%%%%%%%%%%%%%%%%%%%%
+  
+  \SubSection{Publications}
 
-\Gap
-\BulletItem
-Recherche opérationnelle
-\Gap
-\BulletItem
-Optimisation combinatoire
-\Gap
-\BulletItem
-Programmation par contraintes
-\Gap
-\BulletItem
-Programmation en nombres entiers
+  \Item \href{https://arxiv.org/abs/2101.03716}{\textbf{Fairness over Time in Dynamic Resource Allocation with an Application in Healthcare}} \\
+  Lodi, A., Olivier, P., Pesant, G., and Sankaranarayanan S. \\
+  \emph{Mathematical Programming} (2022)
 
-\Gap\Gap
-\Entry
-\textbf{Publications}
+  \Item \href{https://doi.org/10.1007/s10288-021-00486-x}{\textbf{Measures of Balance in Combinatorial Optimization}} \\
+  Olivier, P., Lodi, A., and Pesant, G. \\
+  \emph{4OR} (2021)
 
-\Gap\Gap
-\href{https://arxiv.org/abs/2101.03716}
-{Lodi, A., Olivier, P., Pesant, G., and Sankaranarayanan S. (2022) "Fairness over Time in Dynamic Resource Allocation with an Application in Healthcare". \emph{Mathematical Programming}.}\ExternalLink}
+  \Item \href{https://doi.org/10.1287/ijoc.2020.0983}{\textbf{The Quadratic Multiknapsack Problem with Conflicts and Balance Constraints}} \\
+  Olivier, P., Lodi, A., and Pesant, G. \\
+  \emph{INFORMS Journal on Computing} (2020)
 
-\Gap\Gap
-\href{https://doi.org/10.1007/s10288-021-00486-x}
-{Olivier, P., Lodi, A., and Pesant, G. (2021) "Measures of Balance in Combinatorial Optimization". \emph{4OR}.}\ExternalLink}
+  \Item \href{https://doi.org/10.1007/978-3-319-93031-2_33}{\textbf{A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems}} \\
+  Olivier, P., Lodi, A., and Pesant, G. \\
+  \emph{Integration of AI and OR Techniques in Constraint Programming, Delft, Netherlands, (CPAIOR 2018)} (2018)
 
-\Gap\Gap
-\href{https://doi.org/10.1287/ijoc.2020.0983}
-{Olivier, P., Lodi, A., and Pesant, G. (2020) "The Quadratic Multiknapsack Problem with Conflicts and Balance Constraints". \emph{INFORMS Journal on Computing}.}\ExternalLink}
+  %%%%%%%%%%%%%%%%%%%%%
+  \pagebreak % TEMP
+  \SubSection{Présentations en conférences}
 
-\Gap\Gap
-\href{https://doi.org/10.1007/978-3-319-93031-2_33}
-{Olivier, P., Lodi, A., and Pesant, G. (2018) "A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems". In \emph{Integration of AI and OR Techniques in Constraint Programming, Delft, Netherlands, (CPAIOR 2018)}.\ExternalLink}
+  \Item \textbf{CPAIOR 2018 (Delft, Pays-Bas)} \hfill 06/2018 \\
+  \href{http://icaps18.icaps-conference.org/schedule}{A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems}
 
-\Gap\Gap
-\Entry
-\textbf{Présentations en conférences}
+  \Item \textbf{JOPT 2018 (Montréal, Canada)} \hfill 05/2018 \\
+  \href{https://symposia.gerad.ca/jopt2018/en/schedule?slot_id=1374}{A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems}
 
-\Gap\Gap
-CPAIOR 2018 (Delft, Pays-Bas)
-\hfill
-Juin 2018
-\begin{Detail}\href{http://icaps18.icaps-conference.org/schedule}{A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems\ExternalLink}\end{Detail}
+  \Item \textbf{IFORS 2017 (Québec, Canada)} \hfill 07/2017 \\
+  \href{https://www.euro-online.org/conf/ifors2017/treat_abstract?paperid=1523}{Solving the Wedding Seating Problem by Constraint Programming}
 
-\Gap\Gap
-JOPT 2018 (Montréal, Canada)
-\hfill
-Mai 2018
-\begin{Detail}\href{https://symposia.gerad.ca/jopt2018/en/schedule?slot_id=1374}{A Comparison of Optimization Methods for Multi-Objective Constrained Bin Packing Problems\ExternalLink}\end{Detail}
+  %%%%%%%%%%%%%%%%%%%%%
 
-\Gap\Gap
-IFORS 2017 (Québec, Canada)
-\hfill
-Juil. 2017
-\begin{Detail}\href{https://www.euro-online.org/conf/ifors2017/treat_abstract?paperid=1523}{Solving the Wedding Seating Problem by Constraint Programming\ExternalLink}\end{Detail}
+  \SubSection{Présentations de posters}
 
-\Gap\Gap
-\Entry
-\textbf{Présentations de posters}
+  \Item \textbf{CP 2019 (Stamford, États-Unis)} \hfill 10/2019 \\
+  Measures of Balance in Combinatorial Optimization
 
-\Gap\Gap
-CP 2019 (Stamford, États-Unis)
-\hfill
-Oct. 2019
-\begin{Detail}Measures of Balance in Combinatorial Optimization\end{Detail}
+  %%%%%%%%%%%%%%%%%%%%%
 
-\Gap\Gap
-\Entry
-\textbf{Membre}
+  \SubSection{Membre}
 
-\Gap\Gap
-\href{https://www.polymtl.ca/labo-quosseca/membres/membres-passes/etudiants-au-doctorat}
-{Laboratoire Quosséça\ExternalLink}
-\hfill
-Août 2016 -- Mai 2021
+  \Item \href{https://www.polymtl.ca/labo-quosseca/en/members/alumni/doctoral-students}{\textbf{Laboratoire Quosséça}} \hfill 08/2016--05/2021
 
-\Gap\Gap
-\href{http://cerc-datascience.polymtl.ca/person/philippe-olivier}
-{Chaire d'excellence en recherche du Canada sur la science des données pour la prise de décision en temps réel\ExternalLink}
-\hfill
-Août 2016 -- Mai 2021
+  \Item \href{http://cerc-datascience.polymtl.ca/person/philippe-olivier}{\textbf{Chaire d'excellence en recherche du Canada} \hfill 08/2016--05/2021 \\ \textbf{sur la science des données pour la prise de décision en temps réel}}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+  \Section{Enseigne-\\ment}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% EXPÉRIENCE D'ENSEIGNEMENT %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \SubSection{Chargé de cours}
 
-\Section
-{Expérience d'enseignement}{}{}
+  \Item \textbf{Polytechnique Montréal}
+  \BulletItem INF1005D : Programmation procédurale en Python \hfill 01/2023--Présent
+  \BulletItem INF1005D : Programmation procédurale en Python \hfill 08/2022--12/2022
+  \BulletItem INF1005D : Programmation procédurale en Python \hfill 08/2021--12/2021
 
-\Entry
-\textbf{Université du Québec à Montréal}
+  \Item \textbf{Université du Québec à Montréal}
+  \BulletItem INF1070 : Utilisation et administration des systèmes \hfill 08/2022--12/2022 \\ informatiques (deux cours)
+  \BulletItem INF1070 : Utilisation et administration des systèmes informatiques \hfill 01/2022--04/2022
 
-Chargé de cours
-\BulletItem
-INF1070 : Utilisation et administration des systèmes informatiques
-\hfill
-Jan. 2022 -- Présent
-\small \\ Commandes, applications, et gestion d'un système Linux. \normalsize
+  %%%%%%%%%%%%%%%%%%%%%
 
-\Gap\Gap
-\Entry
-\textbf{Polytechnique Montréal}
+  \SubSection{Chargé de laboratoire}
 
-Chargé de cours
-\BulletItem
-INF1005D : Programmation procédurale en Python
-\hfill
-Sept. 2021 -- Déc. 2021, Sept. 2022 -- Présent
-\small \\ Introduction à la programmation en Python. \normalsize
+  \Item \textbf{Polytechnique Montréal}
+  \BulletItem INF4705/INF8775 : Analyse et conception d'algorithmes \hfill 01/2018--12/2019
 
-\Gap\Gap
-Chargé de laboratoire
-\BulletItem
-INF4705/INF8775 : Analyse et conception d'algorithmes
-\hfill
-Jan. 2018 -- Déc. 2019
-\small \\ Notation asymptotique, classes de complexité, patrons de conception d'algorithmes, métaheuristiques. \normalsize
+  \Item \textbf{Université Laval} \hfill 08/2013--12/2013
 
-\pagebreak % TEMP
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\Gap\Gap
-\Entry
-\textbf{Université Laval}
+  \Section{Projets}
 
-\Gap\Gap
-Tuteur en informatique et mathématiques
-\hfill Sept. 2013 -- Déc. 2013
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% IMPLICATION SCOLAIRE %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\Section
-{Implication scolaire}{}{}
-
-\Entry
-\textbf{Université Laval}
-
-\Gap\Gap
-\href{https://www.ift.ulaval.ca/vie-etudiante/prix-pierre-ardouin/}{Prix Pierre Ardouin\ExternalLink}
-\hfill Hiver 2014
-\small \\ Meilleur projet en génie logiciel orienté-objet. \normalsize
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% EXPÉRIENCE DE TRAVAIL %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\Section
-{Expérience \quad\quad de travail}{}{}
-
-\Entry
-\textbf{pganalyze}
-
-Travail contractuel
-\hfill
-Août 2022 -- Présent
-\small \\ Construction de modèles d'optimisation multi-objectifs pour la résolution de problèmes reliés à la sélection d'index dans les bases de données.\normalsize
-
-\Gap\Gap
-\Entry
-\textbf{Hydro-Québec TransÉnergie}
-
-Stagiaire en informatique
-\hfill
-Sept. 2014 -- Avr. 2015
-\small \\ Automatisation du transfert de données entre une base de données et un logiciel spécialisé. Automatisation d'une partie des tests effectués par des ingénieurs électrique.\normalsize
-
-\Gap\Gap
-\Entry
-\textbf{Ministère de la Défense nationale}
-
-Militaire
-\hfill
-Mai 2006 -- Avr. 2012
-
-%%%%%%%%%%%%%
-%% PROJETS %%
-%%%%%%%%%%%%%
-
-\Section
-{Projets}{}{}
-
-\Entry
-\textbf{Fantasy Solver}
-
-Solveur pour les DFS
-\hfill
-Juin 2021 -- Présent
-\small \\ Solveur pour la génération d'équipes optimales dans les tournois à entrées multiples des \emph{Daily Fantasy Sports} (DFS). Il s'agit (à ma connaissance) du seul solveur exact pour la génération d'équipes multiples pour les DFS.\normalsize
-
-%%%%%%%%%%%%%%%%%%
-%% DISTINCTIONS %%
-%%%%%%%%%%%%%%%%%%
-
-\Section
-{Distinctions}{}{}
-
-Étoile de campagne générale – Asie du Sud-Ouest
-\hfill
-2009
-
-%%%%%%%%%%%%%%%%%%%
-%% CONTRIBUTIONS %%
-%%%%%%%%%%%%%%%%%%%
-
-%% \Section
-%% {Contributions}{}{}
-
-%% \Entry
-%% \textbf{CSPLib: A problem library for constraints}
-
-%% Problem XXX: The Wedding Seating Problem
-%% \hfill
-%% DATE
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% COMPÉTENCES TECHNIQUES %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap\Gap % Temporary, to ensure page break
-% \Section
-% {Compétences techniques}{}{}
-
-% \Entry
-% \textbf{Langages}
-
-% Python, C++, Bash
-
-% \Gap\Gap
-% \Entry
-% \textbf{Outils}
-
-% CPLEX, CP Optimizer (ILOG), Gurobi, SCIP, MiniZinc, Git, Linux, \LaTeX
-
-\end{Body}
-
+  \Item \textbf{Fantasy Solver} \hfill 06/2021--Présent \\
+  Solveur à objectifs multiples pour la génération d'équipes optimales dans les tournois à entrées multiples des \emph{Daily Fantasy Sports} (DFS). Il s'agit (à ma connaissance) du seul solveur exact pour la génération d'équipes multiples pour les DFS.
+  
+\end{list}
+\par
 \end{document}
